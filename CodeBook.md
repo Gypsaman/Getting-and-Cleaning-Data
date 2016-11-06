@@ -15,7 +15,7 @@ for the purpose of this exercise, the inertial signals directory and files conta
 	
 ##The data is grouped into three categories
 
-1  Variable Names and Info**
+###Variable Names and Info
 
   This data is located in the (UCI HAR Dataset) directory and are located within the following files.
   - Readme.txt.  This file should be reviewed for general description and licensing agreements.
@@ -34,7 +34,7 @@ for the purpose of this exercise, the inertial signals directory and files conta
   - features.txt  Contains the variable code and description used.  This data is used as a header for the
                   train and test data.  For brevity they will not be duplicated  here.
 				
-2. Train data
+###Train data
 
   This data is located in the (UCI HAR Datase/train) directory and contain the following files:
   - x_train.txt   Contains a table with 7352 observations and 561 variables measured.  The variables 
@@ -43,7 +43,7 @@ for the purpose of this exercise, the inertial signals directory and files conta
                    observation within x_train.txt and represents the activity measured.			  
   - subject_train.txt`  Contains a vector with 7352 observations.  Each observation corresponds to an
                       observation within x_train.txt and represents the subject.
-3.  Test data
+###Test data
 
   This data is located in the (UCI HAR Datase/test) directory and contain the following files:
   - x_test.txt   Contains a table with 2947 observations and 561 variables measured.  The variables 
