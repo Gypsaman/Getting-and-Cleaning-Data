@@ -15,47 +15,47 @@ for the purpose of this exercise, the inertial signals directory and files conta
 	
 ##The data is grouped into three categories
 
-1. Variable Names and Info
+1  Variable Names and Info**
 
-This data is located in the (UCI HAR Dataset) directory and are located within the following files.
-- Readme.txt.  This file should be reviewed for general description and licensing agreements.
+  This data is located in the (UCI HAR Dataset) directory and are located within the following files.
+  - Readme.txt.  This file should be reviewed for general description and licensing agreements.
 
-- activity_labels.txt.  Contains the activity code and description of the activity
-```
-1 WALKING
-2 WALKING_UPSTAIRS
-3 WALKING_DOWNSTAIRS
-4 SITTING
-5 STANDING
-6 LAYING
-```
-- features_info.txt  Contains descriptions of the variables used within the tests and training.
-                     This document should be read to get familiarized with the variables.
-- features.txt  Contains the variable code and description used.  This data is used as a header for the
-                train and test data.  For brevity they will not be duplicated  here.
+  - activity_labels.txt.  Contains the activity code and description of the activity
+  ```
+  1 WALKING
+  2 WALKING_UPSTAIRS
+  3 WALKING_DOWNSTAIRS
+  4 SITTING
+  5 STANDING
+  6 LAYING
+  ```
+  - features_info.txt  Contains descriptions of the variables used within the tests and training.
+                       This document should be read to get familiarized with the variables.
+  - features.txt  Contains the variable code and description used.  This data is used as a header for the
+                  train and test data.  For brevity they will not be duplicated  here.
 				
-2.  Train data
+2. Train data
 
-This data is located in the (UCI HAR Datase/train) directory and contain the following files:
-- x_train.txt   Contains a table with 7352 observations and 561 variables measured.  The variables 
-                are described in features.txt and features_info.txt
-- y_train.txt   Contains a vector with 7352 observations.  Each observation corresponds to an
-                observation within x_train.txt and represents the activity measured.			  
-- subject_train.txt`  Contains a vector with 7352 observations.  Each observation corresponds to an
+  This data is located in the (UCI HAR Datase/train) directory and contain the following files:
+  - x_train.txt   Contains a table with 7352 observations and 561 variables measured.  The variables 
+                  are described in features.txt and features_info.txt
+  - y_train.txt   Contains a vector with 7352 observations.  Each observation corresponds to an
+                   observation within x_train.txt and represents the activity measured.			  
+  - subject_train.txt`  Contains a vector with 7352 observations.  Each observation corresponds to an
                       observation within x_train.txt and represents the subject.
 3.  Test data
 
-This data is located in the (UCI HAR Datase/test) directory and contain the following files:
-- x_test.txt   Contains a table with 2947 observations and 561 variables measured.  The variables 
-                are described in features.txt and features_info.txt
-- y_test.txt   Contains a vector with 2947 observations.  Each observation corresponds to an
+  This data is located in the (UCI HAR Datase/test) directory and contain the following files:
+  - x_test.txt   Contains a table with 2947 observations and 561 variables measured.  The variables 
+                 are described in features.txt and features_info.txt
+  - y_test.txt   Contains a vector with 2947 observations.  Each observation corresponds to an
                 observation within x_test.txt and represents the activity measured.			  
-- subject_test.txt`  Contains a vector with 2947 observations.  Each observation corresponds to an
-                      observation within x_test.txt and represents the subject.
+  - subject_test.txt`  Contains a vector with 2947 observations.  Each observation corresponds to an
+                       observation within x_test.txt and represents the subject.
 
 # Data Input and Transformations
 
-1. The variable descriptions are read in
+##The variable descriptions are read in
 ```
 ## Read in the activity codes and the features variable names
 activity <- read.table("activity_labels.txt",col.names = c("code","activity"))
@@ -64,7 +64,7 @@ activity <- read.table("activity_labels.txt",col.names = c("code","activity"))
 features <- read.table("features.txt",col.names=c("code","name"),colClasses = c("numeric","character"))
 ```
 
-2.  The training information is read in
+##The training information is read in
 ```
 ## Read in the train information.  Assign column names and create one data frame combined
 
@@ -88,7 +88,7 @@ x_train <- cbind(type="train",x_train)
 train <- cbind(subject_train,activity_train,x_train)
 ```
 
-3. The test information is read in
+##The test information is read in
 ```
 ## Read in the test information.  Assign column names and create one data frame combined
 ## add a column type with value "test"
@@ -112,11 +112,11 @@ x_test <- cbind("test",x_test)
 test <- cbind(subject_test,activity_test,x_test)
 ```
 
-4. Test data and Train data are meged together and summarised by subject,activity and subject
+##Test data and Train data are meged together and summarised by subject,activity and subject
 
 
 
-## combine train and test into one data frame and create a tidy data called summary.csv
+### combine train and test into one data frame and create a tidy data called summary.csv
 
 ```
 result <- rbind(train,test)
