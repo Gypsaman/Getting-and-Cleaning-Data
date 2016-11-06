@@ -1,4 +1,4 @@
-setwd("c:/users/cgarc/documents/Project4/UCI HAR DATASET/")
+setwd("UCI HAR DATASET/")
 
 ## Read in the activity codes and the features variable names
 activity <- read.table("activity_labels.txt",col.names = c("code","activity"))

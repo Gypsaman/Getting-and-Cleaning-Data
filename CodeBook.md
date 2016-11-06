@@ -65,50 +65,63 @@ features <- read.table("features.txt",col.names=c("code","name"),colClasses = c(
 ```
 
 ##The training information is read in
-```
-## Read in the train information.  Assign column names and create one data frame combined
 
+### Read in the train information.  Assign column names and create one data frame combined
+```
 subject_train <- read.table("train/subject_train.txt",col.names = "subject")
 x_train <- read.table("train/x_train.txt")
 y_train <- read.table("train/y_train.txt",col.names="Activity")
+```
 
-
-## Convert activity to descriptive names
+### Convert activity to descriptive names
+```
 activity_train <- data.frame(Activity=activity$activity[y_train$Activity])
 colnames(x_train) <- features$name
+```
 
-## only use variables with mean or std measurements
+### only use variables with mean or std measurements
+```
 x_train <- x_train[,grep("std|mean\\(\\)",colnames(train))]
+```
 
-## add a variable to identify the data as training 
+### add a variable to identify the data as training 
+```
 x_train <- cbind(type="train",x_train)
+```
 
-
-## merge the subject,activity and train data into one data frame.
+### merge the subject,activity and train data into one data frame.
+```
 train <- cbind(subject_train,activity_train,x_train)
 ```
 
 ##The test information is read in
-```
-## Read in the test information.  Assign column names and create one data frame combined
-## add a column type with value "test"
 
+### Read in the test information.  Assign column names and create one data frame combined
+### add a column type with value "test"
+```
 subject_test <- read.table("test/subject_test.txt",col.names = "subject")
 x_test <- read.table("test/x_test.txt")
 y_test<- read.table("test/y_test.txt",col.names = "Activity")
+```
 
-## Convert activity to descriptive names
+### Convert activity to descriptive names
+```
 activity_test <- data.frame(Activity=activity$activity[y_test$Activity])
 colnames(x_test) <- features$name
+```
 
-## only use variables with mean or std measurements
+### only use variables with mean or std measurements
+```
 test <- test[,grep("std|mean\\(\\)",colnames(test))]
+```
 
-## add a variable to identify the data as test data
+### add a variable to identify the data as test data
+```
 x_test <- cbind("test",x_test)
+```
 
-
-## merge the subject,activity and train data into one data frame.
+### merge the subject,activity and train data into one data frame.
+```
 test <- cbind(subject_test,activity_test,x_test)
 ```
 
@@ -120,9 +133,15 @@ test <- cbind(subject_test,activity_test,x_test)
 
 ```
 result <- rbind(train,test)
+```
 
-## just use the mean for each subject,activity and type
+### group by subject,activity and type using the mean of each variable
+```
 sumresult <- aggregate(result[,4:ncol(result)],by=list("subject"=result$subject ,"activity"=result$Activity,"type"=result$type),FUN=mean)
+```
+
+### output the tidy data
+```
 write.csv(sumresult,"summary.csv")
 
 ```
